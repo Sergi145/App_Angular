@@ -7,6 +7,8 @@ var app=express();
 
 //cargamos las rutas
 
+var user_routes=require('./routes/user');
+
 
 //cargamos los middlewares
 
@@ -16,13 +18,7 @@ app.use(bodyParser.json());
 
 //rutas
 
-app.get('/pruebas',(req,res)=>{
-	res.status(200).send({
-
-		message:'Accion de pruebas en el servidor de nodejs'
-	})
-})
-
+app.use('/api',user_routes);
 
 //exportar
 
