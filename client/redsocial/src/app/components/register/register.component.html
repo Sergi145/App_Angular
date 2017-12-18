@@ -1,6 +1,7 @@
+
 <div class="col-lg-6">
 	<h1>Registro</h1>
-	<form #registerForm="ngForm" class="col-lg-6">
+	<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-6">
 
 	<label>Nombre:<span *ngIf="!name.valid && name.touched" class="alert">Campo Oligatorio</span></label> 
 	<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required/>
@@ -19,6 +20,13 @@
 	<br/>
 
 	<input type="submit" value="registrar" class="btn btn-primary" [disabled]="!registerForm.form.valid"/>
+	
+	<br/>
+	<div class="alerts alert alert-success" *ngIf="status=='success'">Registro Efectuado<a [routerLink]="['/login']">Identificate aqui</a></div>
 			
 	</form>
+
+	
+
+
 </div>
