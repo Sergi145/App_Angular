@@ -1,0 +1,36 @@
+*{
+	padding:0;
+	margin:0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html{
+	background-color: #EDEDED;
+}
+
+.navigation{
+	margin: 0px;
+	padding: 0px !important;
+	
+}
+
+.navigation .navbar{
+	border-radius: 0px !important;
+}
+
+a{
+	color:#F98500 !important;
+
+
+}
+a:hover{
+	color:#F9D8B1 !important;
+}
+
+#title{
+	color: #7E84BC;
+	font-size: 30px;
+	font-family: 'Indie Flower', cursive;
+}
