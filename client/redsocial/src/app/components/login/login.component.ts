@@ -1,18 +1,112 @@
 import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute,Params} from '@angular/router';
+import {User} from '../../models/user';
+import {UserService} from '../../services/user.service';
 
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[UserService]//aqui introducimos los servicios que necesitamos
+
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+	public user:User;
+  public status:string;
+  public identity;//lleva el objeto del usuario identificado
+  public token;//lleva el token
+
+  constructor(
+
+  	private _route:ActivatedRoute,
+  	private _router:Router,
+    private _userService:UserService//injectamos el servicio para poder utilizarlo
+
+  	) {
+
+  		this.user=new User("","","","","","","ROLE_USER","","")
+  }
 
   ngOnInit() {
+  }
+
+   onSubmit(form){
+
+    this._userService.singup(this.user).subscribe(
+
+       response=>{
+
+           this.identity=response.user;
+
+           if(!this.identity || !this.identity._id){
+
+             this.status='error';
+           }
+           else{
+
+              console.log(response.user);
+
+             this.status='success';
+          
+             //persistir datos del usuario
+
+
+             //conseguir el token
+
+             this.getToken(form);
+
+           }
+
+       },
+       error=>{
+
+         this.status='error';
+         form.reset();
+         console.log(<any>error);
+       }
+
+      );
+  }
+
+  getToken(form){
+
+     this._userService.singup(this.user,'true').subscribe(
+
+       response=>{
+
+           this.token=response.token;
+
+           console.log(this.token);
+
+           if(this.token.length<=0){
+
+             this.status='error';
+           }
+           else{
+
+               this.status='success';
+                 form.reset();
+             //persistir datos del usuario
+
+
+             //conseguir las estadisticas del usuario
+
+           }
+
+       },
+       error=>{
+
+         this.status='error';
+         console.log(<any>error);
+       }
+
+      );
+
+
+
   }
 
 }

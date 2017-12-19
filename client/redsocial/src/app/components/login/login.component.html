@@ -1,0 +1,20 @@
+<div class="col-lg-6">
+	<h1>Inicio de sesión</h1>
+	<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-lg-6">
+
+	<label>Email:<span *ngIf="!email.valid && email.touched" class="alert">Campo vacio o erroneo</span></label>
+	<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+	<label>Password:<span *ngIf="!password.valid && password.touched" class="alert">Campo Oligatorio</span></label>
+	<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required>
+	<br/>
+
+	<input type="submit" value="Iniciar sesión" class="btn btn-primary" [disabled]="!loginForm.form.valid"/>
+	
+	<br/>
+	<div class="alerts alert alert-success" *ngIf="status=='success'">Inicio efectuado</div>
+	<div class="alerts alert alert-danger" *ngIf="status=='error'">No te has podido identificar correctamente</div>
+			
+	</form>
+
+</div>

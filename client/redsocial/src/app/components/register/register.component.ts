@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   	) {
 
-  		this.user=new User("","","","","","","ROLE_USER","")
+  		this.user=new User("","","","","","","ROLE_USER","","")
 
   }
 

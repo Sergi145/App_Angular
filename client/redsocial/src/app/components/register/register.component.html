@@ -12,7 +12,7 @@
 	<label>Nick:<span *ngIf="!nick.valid && nick.touched" class="alert">Campo Oligatorio</span></label>
 	<input type="text" name="nick" #nick="ngModel" [(ngModel)]="user.nick" class="form-control" required>
 
-	<label>Email:<span *ngIf="!email.valid && email.touched" class="alert">Campo Oligatorio</span></label>
+	<label>Email:<span *ngIf="!email.valid && email.touched" class="alert">Campo vacio o erroneo</span></label>
 	<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 
 	<label>Password:<span *ngIf="!password.valid && password.touched" class="alert">Campo Oligatorio</span></label>
@@ -25,8 +25,5 @@
 	<div class="alerts alert alert-success" *ngIf="status=='success'">Registro Efectuado<a [routerLink]="['/login']">Identificate aqui</a></div>
 			
 	</form>
-
-	
-
 
 </div>

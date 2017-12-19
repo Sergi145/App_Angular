@@ -1,0 +1,29 @@
+h1{
+
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	padding-bottom: 8px;
+	
+}
+
+label{
+
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.alert{
+	color: red;	
+}
+
+.alerts{
+	margin-top: 7px;
+}
+
+.alerts a{
+	font-size: 15px;
+	margin-left: 6px;
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: black !important;
+	cursor: pointer;
+	text-decoration: underline;
+}
