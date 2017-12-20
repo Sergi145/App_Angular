@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
           
              //persistir datos del usuario
 
+             localStorage.setItem('identity',JSON.stringify(this.identity));//como el local storage no deja guardara un objeto tenemos que pasarlo a json
+
 
              //conseguir el token
 
@@ -90,6 +92,8 @@ export class LoginComponent implements OnInit {
                this.status='success';
                  form.reset();
              //persistir datos del usuario
+
+               localStorage.setItem('token',this.token);
 
 
              //conseguir las estadisticas del usuario
