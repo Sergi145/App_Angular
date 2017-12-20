@@ -95,9 +95,11 @@ export class LoginComponent implements OnInit {
 
                localStorage.setItem('token',this.token);
 
-
+              
              //conseguir las estadisticas del usuario
 
+             this.getCounters();
+            
            }
 
        },
@@ -111,6 +113,29 @@ export class LoginComponent implements OnInit {
 
 
 
+  }
+
+
+  getCounters(){
+
+    this._userService.getCounters().subscribe(
+
+      response=>{
+
+        console.log(response);//aqui estan todas las estadisticas del usuario
+
+        localStorage.setItem('stats',JSON.stringify(response));
+
+ 
+        setTimeout(()=>this._router.navigate(['/']),900);
+
+      
+      },
+      error=>{
+        console.log(<any>error);
+      }
+
+      )
   }
 
 }

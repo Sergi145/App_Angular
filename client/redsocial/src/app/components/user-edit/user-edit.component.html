@@ -1,0 +1,37 @@
+
+<div class="col-lg-6">
+	<h1>Actualizar mis datos</h1>
+	<form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)" class="col-lg-6">
+
+	<label>Nombre:<span *ngIf="!name.valid && name.touched" class="alert">Campo Oligatorio</span></label> 
+	<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required/>
+		
+	<label>Apellidos:<span *ngIf="!surname.valid && surname.touched" class="alert">Campo Oligatorio</span></label>
+	<input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required>
+
+	<label>Nick:<span *ngIf="!nick.valid && nick.touched" class="alert">Campo Oligatorio</span></label>
+	<input type="text" name="nick" #nick="ngModel" [(ngModel)]="user.nick" class="form-control" required>
+
+	<label>Email:<span *ngIf="!email.valid && email.touched" class="alert">Campo vacio o erroneo</span></label>
+	<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+	<br/>
+
+	<label>Mi Imagen:<input type="file" name="avatar" placeholder="subir imagen" (change)="fileChangeEvent($event)"></label>
+	
+	<br/>
+
+	<input type="submit" value="Actualizar perfil" class="btn btn-primary" [disabled]="!editForm.form.valid"/>
+	
+	<br/>
+	<div class="alerts alert alert-success" *ngIf="status=='success'">Cambios efectuados</div>
+	<div class="alerts alert alert-danger" *ngIf="status=='error'">No se a podido actualizar los datos</div>
+
+				
+	</form>
+
+</div>
+
+<div class="col-xs-2" *ngIf="user.image">
+	<img src="{{url+'get_image/'+user.image}}"/>
+</div>

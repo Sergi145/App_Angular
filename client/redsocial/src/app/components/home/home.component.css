@@ -187,8 +187,10 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 a {
- background-color: #D3D3D3;   
+ background-color: #D3D3D3;
+
 }
+
 
 .glyphicon-lg{font-size:3em}
 .blockquote-box{border-right:5px solid #E6E6E6;margin-bottom:25px}

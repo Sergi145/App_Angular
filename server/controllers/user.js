@@ -6,6 +6,7 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt=require ('../services/jwt');
 var mongoosePaginate=require('mongoose-pagination');
 var fs=require('fs');
+const path = require('path');
 
 
 function saveUser(req, res) {
@@ -20,7 +21,7 @@ function saveUser(req, res) {
         user.nick = params.nick;
         user.email = params.email;
         user.role = 'ROLE_USER',
-            user.image = null;
+        user.image = null;
 
         //controlamos usuarios duplicados
         User.find({
@@ -375,9 +376,13 @@ function uploadImage(req,res){
 
 function getImageFile(req,res){
 
-	var image_file=req.params.imageFile;
+	var imagefile=req.params.image_file;
 
-	var path_file='./uploads/users/'+image_file;
+    console.log(imagefile)
+
+	var path_file='./uploads/users/'+imagefile;
+
+    console.log(path_file);
 
 	fs.exists(path_file,(exists)=>{
 		if(exists){
