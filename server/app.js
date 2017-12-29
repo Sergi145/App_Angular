@@ -9,7 +9,7 @@ var app=express();
 
 var user_routes=require('./routes/user');
 var follow_routes=require('./routes/follow');
-
+var publication_routes=require('./routes/publication');
 
 //cargamos los middlewares
 
@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 app.use('/api',user_routes);
 app.use('/api',follow_routes);
-
+app.use('/api',publication_routes);
 //exportar
 
 module.exports=app;
