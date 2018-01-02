@@ -7,12 +7,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UsersComponent } from './components/users/users.component';
+import {StadisticsComponent} from './components/stadistics/stadistics/stadistics.component';
 
 const appRoutes: Routes=[
 
 	{path:'',component:HomeComponent},
 	{path:'home',component:HomeComponent},
 	{path:'login',component:LoginComponent},
+	{path:'estadisticas',component:StadisticsComponent},
 	{path:'registro',component:RegisterComponent},
 	{path:'mis_datos',component:UserEditComponent},
 	{path:'usuarios',component:UsersComponent},

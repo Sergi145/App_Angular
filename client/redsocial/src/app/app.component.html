@@ -5,8 +5,7 @@
       <span class="navbar-brand" id="title" ><a [routerLink]="['/home']">Red Social</a></span>
     </div>
     <ul class="nav navbar-nav">
-      <li *ngIf="identity"><a [routerLink]="['/perfil']" class="identify"><span class="glyphicon glyphicon-user"></span> {{identity.name}} {{identity.surname}}</a></li>
-      <li *ngIf="identity"><a href="#"><span class="glyphicon glyphicon-plus"></span> Contactos añadidos</a></li>
+      <li *ngIf="identity"><a [routerLink]="['/estadisticas']" class="identify"><span class="glyphicon glyphicon-user"></span> {{identity.name}} {{identity.surname}}</a></li>
       <li *ngIf="identity"><a [routerLink]="['/usuarios']"><span class="glyphicon glyphicon-sort-by-alphabet"></span> Gente</a></li>
       <li *ngIf="identity"><a [routerLink]="['/mis_datos']"><span class="glyphicon glyphicon-edit"></span> Editar Perfil</a></li>
       <li *ngIf="identity"><a href="#" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>    

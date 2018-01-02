@@ -2,6 +2,7 @@
 
 var User = require('../models/user');
 var Follow = require('../models/follow');
+var Publication = require('../models/publication');
 var bcrypt = require('bcrypt-nodejs');
 var jwt=require ('../services/jwt');
 var mongoosePaginate=require('mongoose-pagination');
@@ -170,7 +171,7 @@ function getUsers(req,res){
 		var page=req.params.page;//como vamos a utilizar paginamiento creamos una variable page
 	}
 	
-	var usersPerPage=10;//le decimos cada pagina cuantos usuarios listara
+	var usersPerPage=16;//le decimos cada pagina cuantos usuarios listara
 
 	User.find().sort('name').paginate(page,usersPerPage,(err,users,total)=>{//buscamos los clientes y lo ordenamos por nombre
 
@@ -209,14 +210,13 @@ function getCounters(req,res){
 
     }
 
-    else{
 
          getCountFollow(userId).then((value)=>{
 
 
             return res.status(200).send(value);
         })
-    }
+
 
 
 }
@@ -230,7 +230,14 @@ async function getCountFollow(user_id){
 
     })
 
-    var followed=await Follow.count({'followed_id':user_id}).exec((err,count)=>{
+    var followed=await Follow.count({"followed_id":user_id}).exec((err,count)=>{
+        if(err)
+          return handleError(err);
+            return count;
+
+    })
+
+      var publications=await Publication.count({"user_id":user_id}).exec((err,count)=>{
         if(err)
           return handleError(err);
             return count;
@@ -240,7 +247,8 @@ async function getCountFollow(user_id){
     return{
 
         following,
-        followed
+        followed,
+        publications
     }
 }
 

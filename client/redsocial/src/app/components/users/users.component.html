@@ -7,7 +7,11 @@
   </div>
   <div class="comments-list">
     <div *ngFor="let user of users" class="media">
-      <p class="pull-right"><span class="glyphicon glyphicon glyphicon-plus"></span></p>
+      <p class="ASS pull-right" *ngIf="follows.indexOf(user._id)<0"><span class="glyphicon glyphicon glyphicon-plus" (click)="followUser(user._id)"></span></p><!--miramos en el array si esta el id del usuario-->
+      <p class="center" *ngIf="follows.indexOf(user._id)>=0"><span class="glyphicon glyphicon glyphicon-ok">Siguiendo</span></p>
+      <p class="AS pull-right"  *ngIf="follows.indexOf(user._id)>=0"><span class="glyphicon glyphicon glyphicon-remove"></span></p>
+
+
       <a class="media-left" href="#">
          	<img src="{{'http://localhost:3800/api/get_image/'+user.image}}" width="100px" height="100px" *ngIf="user.image">
          	<img src="../assets/not-available.png" width="100px" height="100px" *ngIf="!user.image">
@@ -17,8 +21,8 @@
       </div>
     </div>
   </div>
-  <ul class="pager">
+  <!--<ul class="pager">
     <li *ngIf="page>1"><a [routerLink]="['/usuarios',prevpage]">Anterior</a></li>
     <li *ngIf="pages!=page"><a [routerLink]="['/usuarios',nextpage]">Siguiente</a></li>
-  </ul>
+  </ul>¿-->
 </div>

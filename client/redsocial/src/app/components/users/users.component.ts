@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute,Params} from '@angular/router';
 import {User} from '../../models/user';
+import {Follow} from '../../models/follow';
 import {UserService} from '../../services/user.service';
+import {FollowService}  from '../../services/follow.service';
 import {UploadService} from '../../services/upload.service';
 import {GLOBAL} from '../../services/global';
 
@@ -9,7 +11,7 @@ import {GLOBAL} from '../../services/global';
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
-  providers:[UserService]
+  providers:[UserService,FollowService]
 })
 export class UsersComponent implements OnInit {
 
@@ -29,11 +31,13 @@ export class UsersComponent implements OnInit {
   		private _route:ActivatedRoute,
   		private _router:Router,
     	private _userService:UserService,//injectamos el servicio para poder utilizarlo
+      private _followService:FollowService
 
   	) {
 
   		this.user=this._userService.getIdentity();
   		this.token=this._userService.getToken();
+      this.identity=this._userService.getIdentity();
   }
 
   ngOnInit() {
@@ -81,7 +85,7 @@ export class UsersComponent implements OnInit {
   						this.total=response.total;
   						this.users=response.users;
   						this.pages=response.pages;
-  						this.follows=response.value;
+  						this.follows=response.value.following;
 
   						console.log(this.follows);
 
@@ -100,6 +104,42 @@ export class UsersComponent implements OnInit {
   				}
 
   			)
+  }
+
+
+  followUser(followed_id){
+
+    var followed_id;
+     var follow=new Follow('',this.identity._id,followed_id);
+
+  
+     this._followService.addFollow(this.token,follow).subscribe(
+
+         response=>{
+
+               if(!response.follow) 
+
+              this.status='error';
+
+   
+              else
+              {
+                this.status='success';
+                this.follows.push(followed_id);
+
+            
+              }
+
+         },
+         error=>{
+
+           console.log(<any>error);
+
+                this.status='error';
+
+         }
+
+       );
   }
 
 }
